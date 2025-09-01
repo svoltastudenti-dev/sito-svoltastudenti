@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Associazione Studentesca</title>
+  <meta name="description" content="Sito ufficiale dell'Associazione Studentesca: eventi, membri, contatti e social." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230ea5e9'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='52' fill='white' font-family='Arial, Helvetica, sans-serif'%3EAS%3C/text%3E%3C/svg%3E" />
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configura font e colori base
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Cantarell", "Helvetica Neue", "Arial", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <!-- Icône -->
+  <script src="https://kit.fontawesome.com/a2e0b6f6e3.js" crossorigin="anonymous"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Associazione Studentesca" />
+  <meta property="og:description" content="Eventi, membri, contatti e social." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og.jpg" />
+  
+  <!-- Schema.org Organization + Events -->
+  <script id="schema-org" type="application/ld+json"></script>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+  <!-- Barra Avvisi opzionale -->
+  <div id="top-banner" class="hidden bg-cyan-600 text-white text-sm text-center py-2 px-4"></div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="#home" class="flex items-center gap-2 font-bold tracking-tight">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan-500 text-white">AS</span>
+          <span class="">Associazione Studentesca</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="#eventi" class="hover:text-cyan-600">Eventi</a>
+          <a href="#membri" class="hover:text-cyan-600">Membri</a>
+          <a href="#contatti" class="hover:text-cyan-600">Contatti</a>
+          <a href="#faq" class="hover:text-cyan-600">FAQ</a>
+          <button id="themeToggle" class="ml-3 inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-xs hover:bg-slate-50">
+            <i class="fa-solid fa-moon"></i> <span>Tema</span>
+          </button>
+        </nav>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-xl border px-3 py-2 text-sm">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col gap-2">
+          <a href="#eventi" class="px-2 py-2 rounded hover:bg-slate-50">Eventi</a>
+          <a href="#membri" class="px-2 py-2 rounded hover:bg-slate-50">Membri</a>
+          <a href="#contatti" class="px-2 py-2 rounded hover:bg-slate-50">Contatti</a>
+          <a href="#faq" class="px-2 py-2 rounded hover:bg-slate-50">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Unisciti all'Associazione<br>che dà voce agli studenti</h1>
+        <p class="mt-4 text-slate-600">Organizziamo eventi, rappresentiamo gli studenti e creiamo opportunità di networking nel campus.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="#eventi" class="inline-flex items-center gap-2 rounded-2xl bg-cyan-600 px-4 py-2 text-white font-semibold shadow hover:bg-cyan-700">
+            <i class="fa-solid fa-calendar-days"></i> Prossimi eventi
+          </a>
+          <a href="#contatti" class="inline-flex items-center gap-2 rounded-2xl border px-4 py-2 font-semibold hover:bg-slate-50">
+            <i class="fa-solid fa-envelope"></i> Contattaci
+          </a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-video w-full rounded-3xl bg-gradient-to-br from-cyan-100 to-sky-100 shadow-inner">
+          <!-- Video o immagine del campus -->
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1280&auto=format&fit=crop" alt="Campus" class="w-full h-full object-cover rounded-3xl"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eventi -->
+  <section id="eventi" class="bg-slate-50 border-y border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold">Eventi</h2>
+          <p class="text-slate-600">I prossimi appuntamenti e gli eventi passati.</p>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <label for="filterSel" class="text-slate-600">Filtro:</label>
+          <select id="filterSel" class="rounded-xl border px-3 py-2 bg-white">
+            <option value="upcoming">Prossimi</option>
+            <option value="past">Passati</option>
+            <option value="all">Tutti</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="eventList" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      <!-- Calendario Google (opzionale) -->
+      <details class="mt-10">
+        <summary class="cursor-pointer text-sm text-slate-600">Vuoi mostrare un calendario incorporato?</summary>
+        <div class="mt-4 aspect-video overflow-hidden rounded-2xl border">
+          <!-- Sostituisci src con il tuo embed di Google Calendar (pubblico) -->
+          <iframe class="w-full h-full" src="https://calendar.google.com/calendar/embed?src=c_classroom3d%40example.com&ctz=Europe%2FRome" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Membri -->
+  <section id="membri">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">Membri</h2>
+      <p class="text-slate-600">Il direttivo e i referenti dei gruppi.</p>
+      <div id="memberGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Contatti -->
+  <section id="contatti" class="bg-slate-50 border-y border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">Contatti</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-10">
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-envelope mt-1"></i>
+            <div>
+              <div class="font-semibold">Email</div>
+              <a id="emailLink" href="mailto:associazione@example.com" class="text-cyan-700 hover:underline">associazione@example.com</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa-brands fa-instagram mt-1"></i>
+            <div>
+              <div class="font-semibold">Instagram</div>
+              <a id="igLink" href="https://instagram.com/associazione" target="_blank" class="text-cyan-700 hover:underline">@associazione</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa-brands fa-facebook mt-1"></i>
+            <div>
+              <div class="font-semibold">Facebook</div>
+              <a id="fbLink" href="https://facebook.com/associazione" target="_blank" class="text-cyan-700 hover:underline">facebook.com/associazione</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa-brands fa-telegram mt-1"></i>
+            <div>
+              <div class="font-semibold">Telegram</div>
+              <a id="tgLink" href="https://t.me/associazione" target="_blank" class="text-cyan-700 hover:underline">t.me/associazione</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form contatti (Formspree / EmailJS compatibile) -->
+        <form id="contactForm" class="bg-white rounded-2xl border p-6 shadow-sm">
+          <h3 class="text-lg font-semibold">Scrivici</h3>
+          <div class="mt-4 grid gap-4">
+            <input name="name" required placeholder="Nome e cognome" class="rounded-xl border px-4 py-2" />
+            <input name="email" type="email" required placeholder="Email istituzionale" class="rounded-xl border px-4 py-2" />
+            <textarea name="message" required placeholder="Messaggio" rows="4" class="rounded-xl border px-4 py-2"></textarea>
+            <button class="inline-flex items-center gap-2 rounded-2xl bg-cyan-600 px-4 py-2 text-white font-semibold shadow hover:bg-cyan-700" type="submit">
+              <i class="fa-solid fa-paper-plane"></i> Invia
+            </button>
+            <p id="formMsg" class="text-sm text-slate-600"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">FAQ</h2>
+      <div class="mt-6 divide-y">
+        <details class="py-4">
+          <summary class="font-semibold cursor-pointer">Chi può iscriversi?</summary>
+          <p class="mt-2 text-slate-600">Tutti gli studenti e le studentesse dell'Ateneo.</p>
+        </details>
+        <details class="py-4">
+          <summary class="font-semibold cursor-pointer">Come propongo un evento?</summary>
+          <p class="mt-2 text-slate-600">Scrivi a <a class="text-cyan-700 underline" href="mailto:associazione@example.com">associazione@example.com</a> con titolo, luogo e data.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-10 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© <span id="year"></span> Associazione Studentesca • C.F. 00000000000</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-slate-900">Statuto</a>
+        <a href="#" class="hover:text-slate-900">Privacy</a>
+        <a href="#" class="hover:text-slate-900">Cookie</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dati: modifica qui eventi, membri, contatti -->
+  <script>
+    const settings = {
+      orgName: "Associazione Studentesca",
+      email: "associazione@example.com",
+      instagram: "https://instagram.com/associazione",
+      facebook: "https://facebook.com/associazione",
+      telegram: "https://t.me/associazione",
+      topBanner: "Benvenut*! Tesseramento aperto fino al 30/09.",
+    };
+
+    /** Eventi: aggiungi/modifica qui */
+    /**
+     * id: string univoco
+     * title: titolo evento
+     * date: ISO string (Europe/Rome)
+     * location: luogo
+     * tags: ["workshop", "festa", ...]
+     * link: iscrizione o info
+     * description: breve descrizione
+     */
+    const events = [
+      {
+        id: "kickoff-2025",
+        title: "Kickoff Anno Accademico",
+        date: "2025-10-05T18:00:00+02:00",
+        location: "Aula Magna, Campus Centrale",
+        tags: ["networking"],
+        link: "https://forms.gle/example",
+        description: "Presentazione attività, aperitivo e tesseramento.",
+      },
+      {
+        id: "cv-lab",
+        title: "CV & LinkedIn Lab",
+        date: "2025-10-20T14:30:00+02:00",
+        location: "Biblioteca - Sala Studio 2",
+        tags: ["workshop"],
+        link: "https://eventbrite.com/e/example",
+        description: "Laboratorio pratico con revisione CV e profili.",
+      },
+      {
+        id: "spring-party",
+        title: "Spring Party",
+        date: "2025-04-12T21:00:00+02:00",
+        location: "Cortile Polifunzionale",
+        tags: ["party"],
+        link: "https://instagram.com/associazione",
+        description: "Musica dal vivo, DJ set e raccolta fondi.",
+      },
+    ];
+
+    /** Membri: aggiungi/modifica qui */
+    /**
+     * name, role, course, avatar (URL opzionale), links { email, linkedin, instagram }
+     */
+    const members = [
+      {
+        name: "Giulia Rossi",
+        role: "Presidente",
+        course: "Economia e Management",
+        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=640&auto=format&fit=crop",
+        links: { email: "giulia.rossi@example.com", linkedin: "https://linkedin.com/in/giulia-rossi" },
+      },
+      {
+        name: "Marco Bianchi",
+        role: "Vicepresidente",
+        course: "Ingegneria Informatica",
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=640&auto=format&fit=crop",
+        links: { email: "marco.bianchi@example.com", instagram: "https://instagram.com/marco" },
+      },
+      {
+        name: "Sara Conti",
+        role: "Tesoriere",
+        course: "Giurisprudenza",
+        avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=640&auto=format&fit=crop",
+        links: { email: "sara.conti@example.com", linkedin: "https://linkedin.com/in/sara-conti" },
+      },
+      {
+        name: "Luca Verdi",
+        role: "Comunicazione",
+        course: "Lettere Moderne",
+        avatar: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=640&auto=format&fit=crop",
+        links: { email: "luca.verdi@example.com" },
+      },
+    ];
+
+    // --- Utility ---
+    const fmtDate = (iso) => {
+      const d = new Date(iso);
+      return d.toLocaleString("it-IT", { timeZone: "Europe/Rome", weekday: "short", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).replace(":00", ":00");
+    };
+
+    const isPast = (iso) => new Date(iso).getTime() < Date.now();
+
+    const renderTags = (tags=[]) => tags.map(t => `<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-xs text-slate-600">${t}</span>`).join(" ");
+
+    // --- Render ---
+    function render() {
+      // Top banner
+      const top = document.getElementById('top-banner');
+      if (settings.topBanner) { top.textContent = settings.topBanner; top.classList.remove('hidden'); }
+
+      // Contatti
+      document.querySelector('#emailLink').href = `mailto:${settings.email}`;
+      document.querySelector('#emailLink').textContent = settings.email;
+      document.querySelector('#igLink').href = settings.instagram;
+      document.querySelector('#fbLink').href = settings.facebook;
+      document.querySelector('#tgLink').href = settings.telegram;
+      document.title = settings.orgName;
+      document.querySelector('header a span:last-child').textContent = settings.orgName;
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Eventi
+      const filter = document.getElementById('filterSel').value;
+      const sorted = [...events].sort((a,b) => new Date(a.date) - new Date(b.date));
+      const upcoming = sorted.filter(e => !isPast(e.date));
+      const past = sorted.filter(e => isPast(e.date)).reverse();
+      const list = filter === 'upcoming' ? upcoming : filter === 'past' ? past : [...upcoming, ...past];
+
+      const eventList = document.getElementById('eventList');
+      eventList.innerHTML = list.map(e => `
+        <article class="bg-white rounded-2xl border shadow-sm p-5 flex flex-col">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-lg font-semibold">${e.title}</h3>
+            <div class="shrink-0">${renderTags(e.tags)}</div>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">${fmtDate(e.date)} • ${e.location}</p>
+          <p class="mt-3 text-slate-700">${e.description}</p>
+          <div class="mt-4 flex items-center gap-3">
+            ${e.link ? `<a target="_blank" href="${e.link}" class="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm hover:bg-slate-50"><i class='fa-solid fa-arrow-up-right-from-square'></i> Info/Iscrizione</a>` : ''}
+            ${isPast(e.date) ? '<span class="text-xs text-slate-500">Evento concluso</span>' : ''}
+          </div>
+        </article>
+      `).join('');
+
+      // Membri
+      const memberGrid = document.getElementById('memberGrid');
+      memberGrid.innerHTML = members.map(m => `
+        <article class="bg-white rounded-2xl border shadow-sm p-5">
+          <div class="flex items-center gap-4">
+            <img class="h-16 w-16 rounded-2xl object-cover" src="${m.avatar || 'https://api.dicebear.com/9.x/identicon/svg?seed=' + encodeURIComponent(m.name)}" alt="${m.name}">
+            <div>
+              <h3 class="font-semibold">${m.name}</h3>
+              <p class="text-sm text-slate-600">${m.role} • ${m.course}</p>
+              <div class="mt-2 flex items-center gap-3 text-sm">
+                ${m.links?.email ? `<a class="hover:underline" href="mailto:${m.links.email}"><i class='fa-solid fa-envelope'></i> Email</a>` : ''}
+                ${m.links?.linkedin ? `<a class="hover:underline" target="_blank" href="${m.links.linkedin}"><i class='fa-brands fa-linkedin'></i> LinkedIn</a>` : ''}
+                ${m.links?.instagram ? `<a class="hover:underline" target="_blank" href="${m.links.instagram}"><i class='fa-brands fa-instagram'></i> IG</a>` : ''}
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      // Schema.org
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": settings.orgName,
+        "email": settings.email,
+        "sameAs": [settings.instagram, settings.facebook, settings.telegram].filter(Boolean),
+        "event": events.map(e => ({
+          "@type": "Event",
+          "name": e.title,
+          "startDate": e.date,
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "eventStatus": isPast(e.date) ? "https://schema.org/EventCompleted" : "https://schema.org/EventScheduled",
+          "location": { "@type": "Place", "name": e.location },
+          "description": e.description,
+          "url": e.link || document.location.href + '#eventi'
+        }))
+      };
+      document.getElementById('schema-org').textContent = JSON.stringify(schema);
+    }
+
+    // Event listeners
+    document.getElementById('filterSel').addEventListener('change', render);
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+
+    // Tema chiaro/scuro
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      document.body.classList.toggle('bg-slate-900');
+      document.body.classList.toggle('text-slate-100');
+    });
+
+    // Form (demo): usa Formspree/EmailJS o backend proprio
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formMsg = document.getElementById('formMsg');
+      formMsg.textContent = 'Grazie! Messaggio inviato (demo). Configura un servizio come Formspree per invii reali.';
+    });
+
+    // Avvio
+    render();
+  </script>
+</body>
+</html>
